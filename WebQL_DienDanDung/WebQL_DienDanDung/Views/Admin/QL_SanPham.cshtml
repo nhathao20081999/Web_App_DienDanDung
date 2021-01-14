@@ -1,0 +1,139 @@
+﻿@using WebQL_DienDanDung.Models;
+@model List<tbl_Product>
+
+@{
+    ViewBag.Title = "QL_SanPham";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<style type="text/css">
+    #father {
+        width: 400px;
+        overflow: auto;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        border-collapse: collapse;
+        text-align: center;
+    }
+
+    table, th, td {
+        border: 1px solid #151313;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 10px;
+    }
+    /*time kiếm*/
+    .box {
+        height: 60px;
+        background-color: #111313;
+        border-radius: 30px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    input {
+        background: none;
+        outline: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+        width: 0px;
+        transition: 0.8s ease;
+        color: white;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+        input::placeholder {
+            color: antiquewhite;
+        }
+
+    .box:hover input {
+        width: 200px;
+        margin: 0 20px;
+        border-bottom: 2px solid white;
+    }
+
+    input:focus {
+        width: 200px;
+        margin: 0 20px;
+        border-bottom: 2px solid white;
+    }
+
+
+    #father {
+        width: 400px;
+        overflow: auto;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        text-align: center;
+    }
+
+    table, th, td {
+        border: 1px solid #151313;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 10px;
+    }
+</style>
+<div style="padding-left: 50%;">
+    <div class="box" style="text-align:center;font-size: 18px;">
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Nhập từ cần tìm..." title="Type in a name">
+        <a class="fas fa-search" style="color:white;width:60px;"></a>
+    </div>
+</div>
+
+<div class="container">
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <tr class="header" style="background-color:black; color:white;">
+                <th style="text-align: center;">Ảnh</th>
+                <th style="text-align: center; width: 20%;"> Tên Sản Phẩm</th>
+                <th style="text-align: center;">Số Lượng</th>
+                <th style="text-align: center;">Giá Bán</th>
+                <th style="text-align: center;">Thời Hạn BH</th>
+                <th style="text-align: center; width: 1%;"></th>
+                <th style="text-align: center; width: 1%;"></th>
+            </tr>
+            <tbody id="myTable">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td style="text-align:center"><img src="~/Content/img/@item.ProductImage" width="150px" height="150px" /></td>
+                        <td style="text-align:center">@item.ProductName</td>
+                        <td style="text-align:center">@item.NumberOfProduct </td>
+                        <td style="text-align:center">@String.Format("{0:0,0}", item.Cost)</td>
+                        <td style="text-align:center">@item.ExpiryDate tháng</td>
+                        <td><a href="@Url.Action("SuaSP", "Admin", new { id = @item.Id })" class="fas fa-edit" style="font-size:25px"></a></td>
+                        <td><a href="@Url.Action("XoaSP", "Admin", new { id = @item.Id })" class="fas fa-trash-alt" style="font-size:25px"></a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@*Tìm kiếm*@
+<script>
+    $(document).ready(function () {
+        $('#myInput').on('keyup', function (event) {
+            event.preventDefault();
+            /* Act on the event */
+            var tukhoa = $(this).val().toLowerCase();
+            $('#myTable tr').filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(tukhoa) > -1);
+            });
+        });
+    });
+</script>
+

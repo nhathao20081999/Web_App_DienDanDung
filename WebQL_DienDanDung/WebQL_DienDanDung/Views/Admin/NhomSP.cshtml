@@ -1,0 +1,6 @@
+﻿@model IEnumerable<WebQL_DienDanDung.Models.tbl_TypeOfProduct>
+@foreach(var item in Model)
+{
+    <a href="@Url.Action("QL_SanPham",new {msp = @item.Id })"> @item.TypeName</a>
+}
+

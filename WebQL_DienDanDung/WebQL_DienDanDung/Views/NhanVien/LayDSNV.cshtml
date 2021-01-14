@@ -1,0 +1,7 @@
+﻿@model IEnumerable<WebQL_DienDanDung.Models.tbl_User>
+
+@foreach (var nv in Model)
+{
+    <option value="@nv.Id">@nv.UserName</option>
+}
+

@@ -1,0 +1,144 @@
+﻿/*/ Set a style for all buttons /*/
+button {
+    background-color: white;
+    color: black;
+    /* padding: 14px 20px;
+    margin: 8px 0;*/
+    border: none;
+    /*width: 15%;*/
+}
+
+    button:hover {
+        background-color: white;
+        color: cadetblue;
+    }
+
+a {
+    color: black;
+    /* padding: 14px 20px;
+    margin: 8px 0;*/
+    border: none;
+    /*width: 15%;*/
+}
+
+    a:hover {
+        color: cadetblue;
+    }
+
+.box {
+    height: 60px;
+    background-color: #111313;
+    border-radius: 30px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+/*Tìm Kiếm css*/
+.box input {
+    background: none;
+    outline: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: 0px;
+    transition: 0.8s ease;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+    .box input::placeholder {
+        color: antiquewhite;
+    }
+
+    .box:hover input {
+        width: 200px;
+        margin: 0 20px;
+        border-bottom: 2px solid white;
+    }
+
+        .box input:focus {
+            width: 200px;
+            margin: 0 20px;
+            border-bottom: 2px solid white;
+        }
+/*Thêm*/
+/*/ Extra styles for the cancel button /*/
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: Helvetica, Arial, sans-serif;
+} 
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+
+.container {
+    width: 100%;
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+/*/ The Modal (background) /*/
+.modal {
+    display: none; /*/ Hidden by default /*/
+    position: fixed; /*/ Stay in place /*/
+    z-index: 1; /*/ Sit on top /*/
+    left: 0;
+    top: 0;
+    width: 100%; /*/ Full width /*/
+    height: 100%; /*/ Full height /*/
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    padding-left: 10%;
+}
+
+/*/ Modal Content/Box /*/
+.modal-content {
+    background-color: #fefefe;
+    margin: 0% auto 15% auto;
+    border: 1px solid #888;
+    width: 55%;
+    padding: 3% 5% 0 5%;
+}
+
+    /*.modal-content input[type=text], input[type=tel], input[type=date] {        
+        padding: 5px 20px;
+        display: inline-block;        
+        box-sizing: border-box;
+        font-size: 16px;
+        color: black;
+    }
+        .modal-content input[type=text], input[type=tel], input[type=date]::placeholder {
+            color: black;
+        }
+    .modal-content label {
+        font-size: 20px;
+        font-weight: 600;
+        padding: 1% 0 1% 0;
+    }*/
+/*/ The Close Button (x) /*/
+.close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+    .close:hover,.close:focus {
+        color: black;
+        cursor: pointer;
+    }
+
+/*/ Add Zoom Animation /*/
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}

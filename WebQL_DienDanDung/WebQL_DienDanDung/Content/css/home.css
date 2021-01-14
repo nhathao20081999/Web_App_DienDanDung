@@ -1,0 +1,434 @@
+﻿* {
+    margin: 0px;
+    padding: 0px;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: sans-serif;
+    font-size: 15px;
+    height: 100%;
+}
+
+
+/*------------- START CSS Header -----------*/
+header {
+    width: 100%;
+}
+
+.header-content {
+    background-color: #cd1818;
+}
+
+    .header-content a {
+        text-decoration: none;
+        color: white;
+    }
+
+        .header-content a:hover {
+            border-bottom: none;
+            color: red;
+            transition-delay: 0.1s;
+        }
+
+#myNavbar {
+    font-size: 18px;
+}
+
+.header-top {
+    color: white;
+    min-height: 40px;
+}
+}
+
+    .header-top a {
+        text-decoration: none;
+        color: white;
+    }
+
+        .header-top a:hover {
+            border-bottom: none;
+            color: bisque;
+            transition-delay: 0.1s;
+        }
+
+.header-content nav {
+    width: 100%;
+}
+
+#logo {
+    width: 100%;
+    text-align: center;
+}
+
+.search {
+    padding-top: 26px;
+}
+
+.toggle {
+    width: 100%;
+    padding: 10px 20px;
+    background: #555555;
+    text-align: right;
+    box-sizing: border-box;
+    color: #fff;
+    font-size: 24px;
+    display: none;
+}
+
+.carousel-inner img {
+    width: 100%;
+}
+
+/*MENU*/
+.meu-item {
+    color: orange;
+}
+
+.menu-area {
+    position: static; /*giãn item trong sản phẩm*/
+}
+
+.mega-area {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    border: 2px dashed #189EFF;
+}
+
+    .mega-area h5 {
+        color: #4A4A4A;
+    }
+
+    .mega-area .dropdown-item:hover {
+        background-color: #FFC04E;
+        color: #fff;
+        text-align: center;
+        transition: .4s;
+    }
+
+.navbar .nav-link {
+    position: relative;
+}
+
+#myNavbar .nav-link:hover:before {
+    width: 100%;
+}
+
+#myNavbar .nav-link:hover {
+    color: #F3FAFF;
+}
+
+#myNavbar .nav-link:before {
+    content: attr(data-text);
+    border-bottom: 2px solid #ef4366;
+    color: aliceblue;
+    white-space: nowrap;
+    width: 0%;
+    overflow: hidden;
+    padding: 13px 0;
+    transition: .4s;
+    position: absolute;
+    left: 0;
+}
+
+.dropdown-item {
+    padding: 5px 0;
+    / item con của từng sản phẩm -> thẳng hàng bên trái /
+}
+
+#myNavbar h5 {
+    font-family: BigNoodleTitling;
+    font-weight: 900;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+}
+/*------------- END CSS Header -----------*/
+/*------------- START CSS Content -----------*/
+.main-wrapper {
+    background-color: #F4F4F4;
+}
+
+.slide {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+.carousel-inner {
+}
+
+.carousel-item {
+    width: 100%;
+    transition: 1s;
+}
+
+.sanphambanchay #item-banchay {
+    padding: 30px;
+}
+
+.favourite_product a:hover {
+    color: red;
+    transition: 0.5s;
+}
+
+#col_infoproduct {
+    padding-top: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+#hotline {
+    line-height: 15px;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+#email {
+    line-height: 15px;
+    padding-left: 10px;
+    padding-top: 6px;
+    border-bottom: 1px solid #EFF0F5;
+    padding-bottom: 15px;
+}
+
+.supplier_name {
+    border-bottom: 1px solid #EFF0F5;
+    padding: 15px 30px;
+}
+
+.swap_product {
+    padding: 6px 30px;
+}
+
+.shipping_fast {
+    padding: 6px 30px;
+}
+
+.authentic_product {
+    padding: 6px 30px;
+    border-bottom: 1px solid #EFF0F5;
+}
+
+.status {
+    border-bottom: 1px solid #EFF0F5;
+    padding: 15px 30px;
+}
+
+.info_product {
+    background-color: #FAFAFA;
+}
+
+.comment_product a:hover {
+    color: red;
+    transition: 0.5s;
+}
+
+.favourite_product a {
+    text-decoration: none;
+}
+
+.comment_product a {
+    text-decoration: none;
+}
+
+.desciption {
+}
+
+.a.btn:hover{
+    background-color:black;
+}
+.ten {
+    text-decoration: none;
+}
+
+    .ten a:hover {
+        color: #a92b2b;
+        text-decoration: none;
+        transition: 0.5s;
+    }
+
+.details {
+    text-decoration: none;
+}
+
+    .details a:hover {
+        color: #a92b2b;
+        text-decoration: none;
+        transition: 0.5s;
+    }
+
+.products {
+    padding-bottom: 30px;
+    padding-right: 30px;
+}
+/*-----------------------------*/
+.simple-login-container {
+    width: 300px;
+    max-width: 100%;
+    margin: 50px auto;
+}
+
+    .simple-login-container h2 {
+        text-align: center;
+        font-size: 20px;
+    }
+
+    .simple-login-container .btn-login {
+        background-color: #FF5964;
+        color: #fff;
+    }
+
+.form_dangky .form-control {
+}
+/*------------- END CSS Content -----------*/
+/*------------- START CSS Footer -----------*/
+.footer-top p {
+    line-height: 25px;
+}
+
+.footer-top i {
+    line-height: 25px;
+}
+
+.footer-top h2, h3 {
+    font-family: Poppins;
+    color: #FFC04E;
+    font-weight: bold;
+}
+
+.segment-three a {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    border-radius: 50%;
+    background-color: #FFC04E;
+}
+
+    .segment-three a i {
+        font-size: 20px;
+        color: #fff;
+        padding: 7px 10px;
+    }
+
+.footer-top h2 {
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+.footer-top {
+    padding-bottom: 80px 0;
+}
+
+    .footer-top .segment-two ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+.segment-two li a {
+    text-decoration: none;
+    color: #FFC04E;
+}
+
+.segment-two ul li {
+    border-bottom: 2px solid #4A4A4A;
+    line-height: 40px;
+}
+
+.footer-bottom-text {
+    color: #fff;
+    text-align: center;
+    background-color: #808080;
+    line-height: 25px;
+    padding: 10px;
+    font-size: 12px;
+}
+
+.footer-wrapper {
+}
+
+footer {
+    position: relative;
+    bottom: 0px;
+    margin-top: 100px;
+    width: 100%;
+    clear: both;
+}
+
+/*---- CSS Responsive -----*/
+
+@media only screen and(min-width:768px) and (max-width:991px) {
+    .md-mb-30 {
+        margin-bottom: 30px;
+    }
+}
+
+@media only screen and (max-width:767px) {
+    .sm-mb-30 {
+        margin-bottom: 30px;
+    }
+
+    .footer-top {
+        padding: 50px 0;
+    }
+}
+
+/*------------- END CSS Footer -----------*/
+/*----- ADMIN -------*/
+#upload {
+    position: relative;
+    overflow: hidden;
+}
+
+    #upload #upload2 {
+        position: absolute;
+        font-size: 50px;
+        opacity: 0;
+        right: 0;
+        top: 0;
+    }
+
+#fa fa-lap {
+    background-image: url('../image/icon.LAPTOP.png');
+}
+
+.btn btn-TangGiam {
+    color: #191818;
+    background-color: #f7f4f4;
+}
+
+/*@media screen and (max-width: 660px) {
+    #upload #upload2 {
+        position: absolute;
+        font-size: 50px;
+        opacity: 0;
+        right: 0;
+        top: 0;
+    }
+}
+
+@media screen and (min-width: 660px) {
+    .footer-items {
+        width: 100%;
+    }
+}
+
+
+@media screen and (min-width: 1280) {
+    .footer-items {
+        width: 100%;
+    }
+}
+
+
+@media screen and (min-width: 768px) {
+    .footer-items {
+        width: 100%;
+    }
+}*/

@@ -1,0 +1,139 @@
+﻿.menu {
+    position: absolute;
+    /*top: 23px;
+    right: 135px;
+    text-align: center;
+    padding: 0;*/
+    color: #f1e5e5;
+    padding-top: 5px;
+    font-size: 46px;
+    font-weight: 700;
+    line-height: 25px;
+    cursor: pointer
+}
+
+#css-menu {
+    position: fixed;
+    top: 0;
+    z-index: 9999;
+    background: #2C2C2D;
+    height: 100%;
+    transition: all .4s ease-in-out;
+}
+
+#cssmenu, #cssmenu ul, #cssmenu li, #cssmenu a {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    list-style: none;
+    font-weight: normal;
+    text-decoration: none;
+    line-height: 1;
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    position: relative;
+}
+
+    #cssmenu a {
+        line-height: 1.3;
+        padding: 12px 15px;
+    }
+
+#cssmenu {
+    width: 213px;
+}
+
+    #cssmenu > ul > li {
+        cursor: pointer;
+        background: #efefef;
+        border-top: 1px solid #3d3d3d;
+        border-bottom: 1px solid #161616;
+    }
+
+        #cssmenu > ul > li:first-child {
+            border-top: none;
+        }
+
+        #cssmenu > ul > li:last-child {
+            border-bottom: 1px solid #3d3d3d;
+        }
+
+            #cssmenu > ul > li:last-child > a {
+                border-bottom: 1px solid #161616;
+            }
+
+        #cssmenu > ul > li > a {
+            font-size: 14px;
+            display: block;
+            color: #ffffff;
+            text-shadow: 0 1px 1px #000;
+            background: #2C2C2D;
+            padding: 12px 15px;
+        }
+
+            #cssmenu > ul > li > a:hover {
+                text-decoration: none;
+                background: #3d3d3d
+            }
+
+        #cssmenu > ul > li.active {
+            font-weight: 700;
+        }
+
+        #cssmenu > ul > li.home .close-menu {
+            background: #2C2C2D;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 700;
+            padding: 12px 15px;
+            display: block
+        }
+
+        #cssmenu > ul > li.has-sub > a:after {
+            content: '';
+            position: absolute;
+            top: 15px;
+            right: 10px;
+            border: 5px solid transparent;
+            border-left: 5px solid #ffffff;
+        }
+
+        #cssmenu > ul > li.has-sub.active > a:after {
+            right: 14px;
+            top: 17px;
+            border: 5px solid transparent;
+            border-top: 5px solid #ffffff;
+        }
+
+    #cssmenu ul ul {
+        padding: 0;
+        display: none;
+    }
+
+        #cssmenu ul ul.expand {
+            height: 200px;
+            overflow: auto
+        }
+
+        #cssmenu ul ul a {
+            background: #efefef;
+            display: block;
+            color: #797979;
+            font-size: 13px;
+        }
+
+            #cssmenu ul ul a:hover {
+                color: #000;
+            }
+
+        #cssmenu ul ul li {
+            border-bottom: 1px solid #c9c9c9;
+        }
+
+            #cssmenu ul ul li.odd a {
+                background: #e5e5e5;
+            }
+
+            #cssmenu ul ul li:last-child {
+                border: none;
+            }

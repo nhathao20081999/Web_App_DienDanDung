@@ -1,0 +1,112 @@
+﻿
+@{
+    ViewBag.Title = "SuaSP";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+
+<div class="container" style="padding:3% 10% 0 20%;">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <form>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Tên Sản Phẩm</label>
+                <div class="col-sm-7">
+                    <input style="text-align:center" type="text" class="form-control" name="tensanpham" placeholder="Tên Sản Phẩm" value="@Model.ProductName" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Số lượng</label>
+                <div class="col-sm-7">
+                    <input style="text-align:center" type="text" class="form-control" name="soluong" placeholder="Nhập Số Lượng" value="@Model.NumberOfProduct" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Giá bán</label>
+                <div class="col-sm-7">
+                    <input style="text-align:center" type="text" class="form-control" name="giaban" placeholder="Nhập Số Lượng Giá Bán" value="@String.Format("{0:0,0}", Model.Cost)" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Thời hạn bảo hành</label>
+                <div class="col-sm-7">
+                    <input style="text-align:center" type="text" class="form-control" name="hanbh" placeholder="Nhập thời gian bảo hành" value="@Model.ExpiryDate" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Chọn Hình Ảnh</label>
+                <div class="col-sm-7">
+                    <input id="upload" type="file" name="hinhanh" style="display:none;" />
+                    <div>
+                        <input disabled type="text" name="Hinhanh" id="picture" style="width: 85%;height:34px;" value="@Model.ProductImage" required />
+                        <button style="font-size: 2.5em;padding-left:1%;" type="button" id="btnUpload"><i class="fas fa-folder-open"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-7">
+                    <label><img id="pictureUpLoad" src="~/Content/img/@Model.ProductImage"/></label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Nhóm Sản Phẩm</label>
+                <div class="col-sm-7">
+                    <input style="text-align:center" disabled type="text" class="form-control" name="nhomsp" value="@Session["TenNSP"]">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Nhà Sản Xuất</label>
+                <div class="col-sm-7">
+                    <input style="text-align:center" disabled type="text" class="form-control" name="nhasx" value="@Session["TenNSX"]">
+                </div>
+            </div>
+            <div style="text-align:right;width:auto;font-size: 3.0em;padding-right:20%">
+                <button class="button" type="submit"><i class="fas fa-edit"></i></button>
+                <a href="@Url.Action("QL_SanPham", "Admin", new { msp = @Model.TypeId })"><i class="fas fa-share-square"></i></a>
+            </div>
+        </form>
+    }
+</div>
+
+@section upload
+    {
+    <script>
+        $(function () {
+            //Đăng ký sự kiện nút image
+            $('#btnUpload').click(function () {
+                $('#upload').trigger('click')
+            });
+            //Bắt sự kiện change data của fileUpload
+            $('#upload').change(function () {
+                //Kiểm tra trình duyệt có hỗ trợ FormData object
+                if (window.FormData !== undefined) {
+                    //Lấy dữ liệu fileUpload
+                    var fileUpload = $('#upload').get(0);
+                    var files = fileUpload.files;
+                    //Tạo đối tượng formdata
+                    var formData = new FormData();
+                    //Đưa dữ liệu vào form
+                    formData.append('file', files[0]);
+                    $.ajax(
+                        {
+                            type: 'POST',
+                            url: '/Admin/ProcessUpload',
+                            contentType: false, // Không có header
+                            processData: false,//Không xử lý dữ liệu
+                            data: formData,
+                            success: function (urlImage) {
+                                $('#pictureUpLoad').attr('src', urlImage);
+                                $('#picture').val(urlImage);
+                            },
+                            error: function (err) {
+                                alert('Có lỗi khi upload' + err.statusText);
+                            }
+                        });
+                }
+            });
+        });
+    </script>
+
+}

@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "XoaHD";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="container" style="padding: 3% 20% 0 20%;">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <form>
+            <table class="table table-bordered">
+                <tr>
+                    <td scope="col" style="width:25%;text-align:left;">Họ Tên Nhân Viên</td>
+                    <td scope="col" style="text-align:center;">@Model.tbl_User.UserName</td>
+                </tr>
+                <tr>
+                    <td scope="col" style="width:25%;text-align:left;">Họ Tên Khách Hàng</td>
+                    <td scope="col" style="text-align:center;">@Model.tbl_Customer.UserName</td>
+                </tr>
+                <tr>
+                    <td scope="row" style="width:25%;text-align:left;">Ngày Lập</td>
+                    <td colspan="2" style="text-align:center;">@String.Format("{0:dd-MM-yyyy}", Model.DateCreate)</td>
+                </tr>
+                <tr>
+                    <td scope="row" style="width:25%;text-align:left;">Tổng Tiền</td>
+                    <td colspan="2" style="text-align:center;">@Model.SumMoney</td>
+                </tr>
+                <tr>
+                    <td scope="row" style="width:25%;text-align:left;">Tình Trạng</td>
+                    @if (Convert.ToString(Model.Status) == "False")
+                    {
+                        <td colspan="2" style="text-align:center;">Chưa Thanh Toán</td>
+                    }
+                </tr>
+            </table>
+            <div style="text-align: right;">
+                <button class="button" type="submit"><i style="text-align: center; width: auto; font-size: 2.0em;" class="fas fa-trash"></i></button>
+                <a href="@Url.Action("HoaDon", "HoaDon")"><i style="text-align: center; width: auto; font-size: 2.0em;" class="fas fa-share-square"></i></a>
+            </div>
+        </form>
+    }
+</div>
+

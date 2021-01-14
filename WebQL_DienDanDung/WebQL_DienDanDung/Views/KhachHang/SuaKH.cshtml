@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "SuaKH";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="container" style="padding:2% 0 0 25%;">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <form name="form">
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Họ Tên:</label>
+                <div class="col-sm-4">
+                    <input style="text-align:center" type="text" class="form-control" name="tenkh" placeholder="Nhập Họ Tên Nhân Viên..." value="@Model.UserName" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Ngày Sinh:</label>
+                <div class="col-sm-4">
+                    <input style="text-align:center" type="date" class="form-control" name="ngaysinh" value="@String.Format("{0:yyyy-MM-dd}", Model.Birthday)" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Giới Tính:</label>
+                <div class="col-sm-4" style="text-align:center">
+                    @if (Convert.ToString(Model.Gender) == "True")
+                    {
+                        <input style="text-align:center;padding-left:1%;" type="radio" name="gioitinh" value="true" checked="checked" /><a style="padding-right:10%;"> Nam </a>
+                        <input style="text-align:center;padding-left:1%;" type="radio" name="gioitinh" value="false" /><a>Nữ</a>
+                    }
+                    else
+                    {
+                        <input style="text-align:center;padding-left:1%;" type="radio" name="gioitinh" value="true" /><a style="padding-right:10%;"> Nam </a>
+                        <input style="text-align:center;" type="radio" name="gioitinh" value="false" checked="checked" /> <a>Nữ</a>
+                    }
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Số Điện Thoại:</label>
+                <div class="col-sm-4">
+                    <input style="text-align:center" type="tel" class="form-control" id="mobile" maxlength="10" name="sdt" placeholder="Nhập Số Điện Thoại..." value="@Model.PhoneNumber" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Địa Chỉ:</label>
+                <div class="col-sm-4">
+                    <input style="text-align:center" type="text" class="form-control" name="diachi" placeholder="Nhập Địa Chỉ..." value="@Model.Address" required>
+                </div>
+            </div>
+            <div style="text-align:center;width:auto;font-size: 2.0em;padding: 0 12% 0 0">
+                <button class="button" type="submit"><i class="fas fa-user-check"></i></button>
+                <a href="@Url.Action("KhachHang", "KhachHang")"><i class="fas fa-share-square"></i></a>
+            </div>
+        </form>
+    }
+</div>
+<script>
+    //Kiểm tra sđt
+    $(document).ready(function () {
+        $('body').on('click', '.button', function () {
+            var vnf_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
+            var mobile = $('#mobile').val();
+            if (mobile !== '') {
+                if (vnf_regex.test(mobile) == false) {
+                    alert("Số điện thoại của bạn không đúng định dạng!");
+                }
+            } else {
+                 alert("Bạn chưa điền số điện thoại!");
+            }
+        });
+    });
+</script>
+

@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "SuaCTHD";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="container" style="padding:2% 0 0 25%;">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <form name="form">
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Sản Phẩm:</label>
+                <div class="col-sm-4">
+                    <input style="text-align:center" disabled type="text" class="form-control" name="tennv" placeholder="Nhập Họ Tên Nhân Viên..." value="@Model.tbl_Product.ProductName" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Số Lượng Mua:</label>
+                <div class="col-sm-4">
+                    <input style="text-align:center" type="tel" class="form-control" name="soluong" placeholder="Nhập Số Lượng..." value="@Model.Number" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Tổng Tiền:</label>
+                <div class="col-sm-4">
+                    <input style="text-align:center" disabled type="text" class="form-control" name="tongtien" value="@Model.SumCost" required>
+                </div>
+            </div>
+            <div style="text-align:center;width:auto;font-size: 2.0em;padding: 0 12% 0 0">
+                <button class="button" type="submit"><i class="fas fa-pen-square"></i></button>
+                <a href="@Url.Action("ChiTietHD", "HoaDon", new { id_hd = Model.BillId })"><i class="fas fa-share-square"></i></a>
+            </div>
+        </form>
+
+    }
+</div>
+

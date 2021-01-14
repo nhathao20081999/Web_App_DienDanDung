@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "XoaKH";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="container" style="padding:5% 20% 0 20%">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <form>
+            <table class="table table-bordered">
+                <tr>
+                    <td scope="col" style="width:25%;text-align:left;"><b>Tên Khách Hàng</b></td>
+                    <td scope="col" style="text-align:center;">@Model.UserName</td>
+                </tr>
+                <tr>
+                    <td scope="col" style="width:25%;text-align:left;"><b>Ngày Sinh</b></td>
+                    <td scope="col" style="text-align:center;">@Convert.ToDateTime(Model.Birthday).Day/@Convert.ToDateTime(Model.Birthday).Month/@Convert.ToDateTime(Model.Birthday).Year</td>
+
+                </tr>
+                <tr>
+                    <td scope="row" style="width:25%;text-align:left;"><b>Giới Tính</b></td>
+
+                    @if (Convert.ToString(Model.Gender) == "True")
+                    {
+                        <td style="text-align:center;">Nam </td>
+                    }
+                    else
+                    {
+                        <td style="text-align:center;">Nữ </td>
+                    }
+
+                </tr>
+                <tr>
+                    <td scope="row" style="width:25%;text-align:left;"><b>Số Điện Thoại</b></td>
+                    <td colspan="2" style="text-align:center;">@Model.PhoneNumber</td>
+
+                </tr>
+                <tr>
+                    <td scope="row" style="width:25%;text-align:left;"><b>Địa Chỉ</b></td>
+                    <td colspan="2" style="text-align:center;">@Model.Address</td>
+                </tr>
+            </table>
+            <div style="text-align: right;">
+                <button class="button" type="submit"><i style="text-align: center; width: auto; font-size: 2.0em;" class="fas fa-user-slash"></i></button>
+                <a href="@Url.Action("KhachHang", "KhachHang")"><i style="text-align: center; width: auto; font-size: 2.0em;padding-left:3%;" class="fas fa-share-square"></i></a>
+            </div>
+        </form>
+
+    }
+</div>
+

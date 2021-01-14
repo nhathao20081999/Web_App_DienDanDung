@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "ThanhToan";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="container" style=" padding: 3% 0% 0 18%;">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+    <form>
+        <div class="form-group row" style="display:none">
+            <label class="col-sm-2 col-form-label">Mã Nhân Viên</label>
+            <div class="col-sm-7">
+                <input style="text-align:center" disabled type="text" class="form-control" name="manv" value="@Model.PersionalID" required>
+            </div>
+        </div>
+        <div class="form-group row" style="display:none">
+            <label class="col-sm-2 col-form-label">Mã Khách Hàng</label>
+            <div class="col-sm-7">
+                <input style="text-align:center" disabled type="text" class="form-control" name="makh" value="@Model.CustomerID" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Tên Nhân Viên:</label>
+            <div class="col-sm-7">
+                <input style="text-align:center" disabled type="text" class="form-control" value="@Model.tbl_User.UserName" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Tên Khách Hàng:</label>
+            <div class="col-sm-7">
+                <input style="text-align:center" disabled type="text" class="form-control" value="@Model.tbl_Customer.UserName" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Ngày Lập:</label>
+            <div class="col-sm-4">
+                <input style="text-align:center" disabled type="date" class="form-control" name="ngaylap" value="@String.Format("{0:yyyy-MM-dd}", Model.DateCreate)" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Tổng Tiền:</label>
+            <div class="col-sm-7">
+                <input style="text-align:center" type="number" class="form-control" name="tongtien" value="@Model.SumMoney" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Tình Trạng:</label>
+            <div class="col-sm-4" style="text-align:center">
+                @*if(Convert.ToString(Model.Status) == "True")*@
+                <input style="text-align:center;padding-right:1%;" type="radio" name="tinhtrang" value="False" checked="checked" /><a style="padding-right:10%;"> Chưa Thanh Toán </a>
+                <input style="text-align:center;padding-right:1%;" type="radio" name="tinhtrang" value="True" /><a style="padding-left:1%;">Đã Thanh Toán</a>
+            </div>
+        </div>
+        <div style="text-align:right;width:auto;font-size: 3.0em;padding-right:20%">
+            <button class="button" type="submit"><i class="fas fa-check-double"></i></button>
+            <a href="@Url.Action("HoaDon","HoaDon")"><i class="fas fa-share-square"></i></a>
+        </div>
+    </form>
+    }
+</div>
+

@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+<style>
+    #time {
+        font-family: 'Times New Roman';
+        font-size: 3em;
+        font-weight: 600;
+        color: blue;
+        float: right;
+        padding-right: 1%;
+    }
+    #ngay {
+        font-family: 'Times New Roman';
+        font-size: 3em;
+        font-weight: 600;
+        color: black;
+        float: left;
+    }
+</style>
+@*<div style="background-color:black; color:white; text-align:right;padding-right:1%;font-size:1.1em;">
+    @if (Session["ten"] != null)
+    {
+        <a style="padding-right:2%"> &nbsp; Xin chào @Session["ten"]</a>
+        <a href="@Url.Action("DangXuat","Admin")" class="fas fa-sign-out-alt" style="color:white;">&nbsp;Đăng Xuất</a>
+    }
+</div>*@
+<div>
+    <a id="ngay"><i class="far fa-calendar-alt">@DateTime.Now.DayOfWeek, @String.Format("{0:dd/MM/yyyy}", DateTime.Now)</i></a>
+    <a id="time"><i id="clock" class="fas fa-stopwatch"></i></a>
+</div>
+
+<div style="padding: 8% 0 0 80%;">
+    <a>
+        <img src="~/Content/img_bg/@Session["anh"]" width="150px" height="150px" />
+    </a>
+    <div>
+        <h6> Chức vụ: <b> @Session["CV"]</b> </h6>
+    </div>
+    <div>
+        <h6>
+            Tình Trạng:
+            @if (Convert.ToString(@Session["TinhTrangHD"]) == "True")
+            {
+                <b>Đang Hoạt Động</b>
+            }
+            else
+            {
+                <b>Dừng Hoạt Động</b>
+            }
+        </h6>
+    </div>
+</div>
+
+<script>
+    function dongho() {
+        var time = new Date();
+        var gio = time.getHours();
+        var phut = time.getMinutes();
+        var giay = time.getSeconds();
+        if (gio < 10) {
+            gio = "0" + gio;
+        }
+        if (phut < 10) {
+            phut = "0" + phut;
+        }
+        if (giay < 10) {
+            giay = "0" + giay;
+        }
+        document.getElementById("clock").innerHTML = ": " + gio + ":" + phut + ":" + giay;
+        setTimeout("dongho()", 1000);
+    }
+    dongho();
+</script>

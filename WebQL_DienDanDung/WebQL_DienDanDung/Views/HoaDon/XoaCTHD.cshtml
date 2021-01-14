@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "XoaCTHD";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="container" style="padding: 3% 20% 0 20%;">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <form>
+            <table class="table table-bordered">
+                <tr>
+                    <td scope="col" style="width:25%;text-align:left;">Tên Sản Phẩm</td>
+                    <td scope="col" style="text-align:center;">@Model.tbl_Product.ProductName</td>
+                </tr>
+                <tr>
+                    <td scope="col" style="width:25%;text-align:left;"> Số lượng Mua</td>
+                    <td scope="col" style="text-align:center;">@Model.Number</td>
+                </tr>
+                <tr>
+                    <td scope="row" style="width:25%;text-align:left;">Tổng Tiền</td>
+                    <td colspan="2" style="text-align:center;">@Model.SumCost</td>
+                </tr>
+            </table>
+            <div style="text-align: right;">
+                <button class="button" type="submit"><i style="text-align: center; width: auto; font-size: 2.0em;" class="fas fa-trash"></i></button>
+                <a href="@Url.Action("ChiTietHD", "HoaDon")"><i style="text-align: center; width: auto; font-size: 2.0em;" class="fas fa-share-square"></i></a>
+            </div>
+        </form>
+    }
+</div>

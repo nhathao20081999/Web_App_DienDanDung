@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "SuaKho";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="container" style=" padding: 3% 0% 0 18%;">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+    <form>
+        <div class="form-group row" style="display:none">
+            <label class="col-sm-2 col-form-label">Mã Sản Phẩm</label>
+            <div class="col-sm-7">
+                <input style="text-align:center" disabled type="text" class="form-control" name="masp" placeholder="Nhâp mã Sản Phẩm..." value="@Model.ProductId">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Tên Sản Phẩm</label>
+            <div class="col-sm-7">
+                <input style="text-align:center" disabled type="text" class="form-control" name="masp" placeholder="Nhâp Tên Sản Phẩm..." value="@Model.tbl_Product.ProductName">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Số Lượng Tồn</label>
+            <div class="col-sm-7">
+                <input style="text-align:center" type="number" class="form-control" name="soluongton" placeholder="Nhập Số Lượng" value="@Model.Number" required>
+            </div>
+        </div>
+        <div style="text-align:right;width:auto;font-size: 3.0em;padding-right:20%">
+            <button class="button" type="submit"><i class="fas fa-wrench"></i></button>
+            <a href="@Url.Action("Kho","Kho")"><i class="fas fa-share-square"></i></a>
+        </div>
+    </form>
+    }
+</div>
+

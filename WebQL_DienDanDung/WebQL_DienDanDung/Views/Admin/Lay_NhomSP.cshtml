@@ -1,0 +1,6 @@
+﻿@model IEnumerable<WebQL_DienDanDung.Models.tbl_TypeOfProduct>
+
+@foreach(var nhomsp in Model)
+{
+    <option value="@nhomsp.Id">@nhomsp.TypeName</option>
+}

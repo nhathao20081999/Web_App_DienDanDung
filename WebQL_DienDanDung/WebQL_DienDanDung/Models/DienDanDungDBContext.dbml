@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QL_DIENDANDUNG" Class="DienDanDungDBContextDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-O19GM82\SQLEXPRESS;Initial Catalog=QL_DIENDANDUNG;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="QL_DIENDANDUNGConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tbl_Account" Member="tbl_Accounts">
+    <Type Name="tbl_Account">
+      <Column Name="UserName" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="Char(12)" CanBeNull="true" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AccountImage" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TypeOfAccountId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="tbl_User_tbl_Account" Member="tbl_User" ThisKey="UserId" OtherKey="Id" Type="tbl_User" IsForeignKey="true" />
+      <Association Name="tbl_TypeOfAccount_tbl_Account" Member="tbl_TypeOfAccount" ThisKey="TypeOfAccountId" OtherKey="Id" Type="tbl_TypeOfAccount" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_User" Member="tbl_Users">
+    <Type Name="tbl_User">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Birthday" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Gender" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PhoneNumber" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="Status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="tbl_User_tbl_Account" Member="tbl_Accounts" ThisKey="Id" OtherKey="UserId" Type="tbl_Account" />
+      <Association Name="tbl_User_tbl_Bill" Member="tbl_Bills" ThisKey="Id" OtherKey="PersionalID" Type="tbl_Bill" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_Bill" Member="tbl_Bills">
+    <Type Name="tbl_Bill">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CustomerID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PersionalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DateCreate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="SumMoney" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="tbl_Bill_tbl_ProductOfBill" Member="tbl_ProductOfBills" ThisKey="Id" OtherKey="BillId" Type="tbl_ProductOfBill" />
+      <Association Name="tbl_User_tbl_Bill" Member="tbl_User" ThisKey="PersionalID" OtherKey="Id" Type="tbl_User" IsForeignKey="true" />
+      <Association Name="tbl_Customer_tbl_Bill" Member="tbl_Customer" ThisKey="CustomerID" OtherKey="Id" Type="tbl_Customer" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_Customer" Member="tbl_Customers">
+    <Type Name="tbl_Customer">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Birthday" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Gender" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PhoneNumber" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Association Name="tbl_Customer_tbl_Bill" Member="tbl_Bills" ThisKey="Id" OtherKey="CustomerID" Type="tbl_Bill" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_Producer" Member="tbl_Producers">
+    <Type Name="tbl_Producer">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProducerName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PhoneNumber" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="Location" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Mail" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ProducerImage" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="tbl_Producer_tbl_Product" Member="tbl_Products" ThisKey="Id" OtherKey="ProducerId" Type="tbl_Product" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_Product" Member="tbl_Products">
+    <Type Name="tbl_Product">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProductName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NumberOfProduct" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ProductImage" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Cost" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="ExpiryDate" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ProducerId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tbl_Product_tbl_ProductOfBill" Member="tbl_ProductOfBills" ThisKey="Id" OtherKey="ProductId" Type="tbl_ProductOfBill" />
+      <Association Name="tbl_Product_tbl_Store" Member="tbl_Stores" ThisKey="Id" OtherKey="ProductId" Type="tbl_Store" />
+      <Association Name="tbl_Producer_tbl_Product" Member="tbl_Producer" ThisKey="ProducerId" OtherKey="Id" Type="tbl_Producer" IsForeignKey="true" />
+      <Association Name="tbl_TypeOfProduct_tbl_Product" Member="tbl_TypeOfProduct" ThisKey="TypeId" OtherKey="Id" Type="tbl_TypeOfProduct" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_ProductOfBill" Member="tbl_ProductOfBills">
+    <Type Name="tbl_ProductOfBill">
+      <Column Name="BillId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ProductId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Number" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SumCost" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Association Name="tbl_Bill_tbl_ProductOfBill" Member="tbl_Bill" ThisKey="BillId" OtherKey="Id" Type="tbl_Bill" IsForeignKey="true" />
+      <Association Name="tbl_Product_tbl_ProductOfBill" Member="tbl_Product" ThisKey="ProductId" OtherKey="Id" Type="tbl_Product" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_Store" Member="tbl_Stores">
+    <Type Name="tbl_Store">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProductId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Number" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tbl_Product_tbl_Store" Member="tbl_Product" ThisKey="ProductId" OtherKey="Id" Type="tbl_Product" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_TypeOfAccount" Member="tbl_TypeOfAccounts">
+    <Type Name="tbl_TypeOfAccount">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="tbl_TypeOfAccount_tbl_Account" Member="tbl_Accounts" ThisKey="Id" OtherKey="TypeOfAccountId" Type="tbl_Account" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_TypeOfProduct" Member="tbl_TypeOfProducts">
+    <Type Name="tbl_TypeOfProduct">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="tbl_TypeOfProduct_tbl_Product" Member="tbl_Products" ThisKey="Id" OtherKey="TypeId" Type="tbl_Product" />
+    </Type>
+  </Table>
+</Database>

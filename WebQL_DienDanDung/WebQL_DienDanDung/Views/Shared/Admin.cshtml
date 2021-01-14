@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Quản Lý</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="~/Content/css/admin.css" rel="stylesheet" />
+    <link href="~/Content/css/them.css" rel="stylesheet" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="http://hocwebgiare.com/thiet_ke_web_chuan_demo/menu_nav/js/navAccordion.min.js"></script>
+    <script src="https://kit.fontawesome.com/6b02239e17.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+</head>
+<body>
+
+    <div class="row">
+        <div class="col-md-2">
+            @*<div class="menu" title="Menu"><span style="font-size:16px;position:absolute;top:1px;left:30px">Danh Mục</span> &#8801;</div>*@
+            <div id="css-menu">
+                <div id="cssmenu">
+                    <ul>
+                        <li id="1"><a><i class="fas fa-bars" style="font-size:18px;">&nbsp;Danh Mục Quản Lý</i></a></li>
+                        <li id="2"><a href="@Url.Action("Admin","Admin")"><i class="fas fa-home" style="font-size:20px;">&nbsp;Trang Chủ</i></a></li>
+                        <li id="3" class="has-sub">
+                            <a href="#"><i class="fas fa-list-alt" style="font-size:20px;">&nbsp;Sản Phẩm</i></a>
+                            <ul>
+                                <li>@Html.Action("NhomSP", "Admin")</li>
+                            </ul>
+                        </li>
+                        <li id="4"><a href="@Url.Action("NhanVien","NhanVien")"><i class="fas fa-users" style="font-size:20px;">&nbsp;Nhân Viên</i></a></li>
+                        <li id="5"><a href="@Url.Action("KhachHang","KhachHang")"><i class="fas fa-walking" style="font-size:20px;">&nbsp;Khách Hàng</i></a></li>
+                        <li id="6"><a href="@Url.Action("HoaDon","HoaDon")"><i class="fas fa-file-invoice-dollar" style="font-size:20px;">&nbsp;Hóa Đơn</i></a></li>
+                        <li id="7"><a href="@Url.Action("ThemSP","Admin")"><i class="fas fa-clipboard-list" style="font-size:20px;">&nbsp;Nhập Hàng</i></a></li>
+                        <li id="8"><a href="@Url.Action("DoiTra","DoiTra")"><i class="fas fa-sync-alt" style="font-size:20px;">&nbsp;Đổi Trả</i></a></li>
+                        <li id="9"><a href="@Url.Action("ThongKe","ThongKe")"><i class="fas fa-chart-bar" style="font-size:20px;">&nbsp;Thống Kê</i></a></li>
+                        <li id="10"><a href="@Url.Action("Kho","Kho")"><i class="fas fa-warehouse" style="font-size:20px;">&nbsp;Kho</i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div style="background-color:black; color:white; text-align:right;padding-right:1%;font-size:1.1em;">
+                @if (Session["ten"] != null)
+                {
+                    <a style="padding-right:2%"> &nbsp; Xin chào @Session["ten"]</a>
+                    <a href="@Url.Action("DangXuat","Admin")" class="fas fa-sign-out-alt" style="color:white;">&nbsp;Đăng Xuất</a>
+                }
+            </div>
+            <div style="padding-top: 1%;">
+                @RenderBody()
+            </div>
+        </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @RenderSection("upload", required: false)
+    @RenderSection("myFunction", required: false)
+    @*@*
+        @*<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>*@*@*@
+    <script>
+        $('#cssmenu ul ul li:odd').addClass('odd');
+        $('#cssmenu ul ul li:even').addClass('even');
+        $('#cssmenu > ul > li > a').click(function () {
+            $('#cssmenu li').removeClass('active');
+            $(this).closest('li').addClass('active');
+            var checkElement = $(this).next();
+            if ((checkElement.is('ul')) && (checkElement.is(':visible'))) {
+                $(this).closest('li').removeClass('active');
+                checkElement.slideUp('normal');
+            }
+            if ((checkElement.is('ul')) && (!checkElement.is(':visible'))) {
+                $('#cssmenu ul ul:visible').slideUp('normal');
+                checkElement.slideDown('normal');
+            }
+            if ($(this).closest('li').find('ul').children().length == 0) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    </script>
+
+    @*Phân quyền*@
+    <script>
+        var pq = @Session["PQ"];
+        if (pq == "2") {
+            document.getElementById("3").style.display = "none";
+            document.getElementById("4").style.display = "none";
+            document.getElementById("7").style.display = "none";
+            document.getElementById("10").style.display = "none";
+        }
+        else if (pq == "4") {
+            document.getElementById("3").style.display = "none";       
+            document.getElementById("4").style.display = "none";
+            document.getElementById("5").style.display = "none";
+            document.getElementById("6").style.display = "none";
+            document.getElementById("7").style.display = "none";
+            document.getElementById("8").style.display = "none";
+            document.getElementById("9").style.display = "none";
+        }
+    </script>
+</body>
+</html>

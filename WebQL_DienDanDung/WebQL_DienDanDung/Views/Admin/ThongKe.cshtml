@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "ThongKe";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<h2>ThongKe</h2>
+<div id="chart"></div>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+            //load the Google Visualization API and the chart
+            google.load('visualization', '1', {'packages': ['columnchart']});
+
+            //set callback
+            google.setOnLoadCallback (createChart);
+
+            //callback function
+            function createChart() {
+
+                //create data table object
+                var dataTable = new google.visualization.DataTable();
+
+                //define columns
+                dataTable.addColumn('string','Date');
+                dataTable.addColumn('number', 'Const');
+
+                //define rows of data
+                dataTable.addRows([['1', 1037], ['2', 1116], ['3', 2439], ['4', 3868], ['5', 7868]]);
+
+                //instantiate our chart object
+                var chart = new google.visualization.ColumnChart (document.getElementById('chart'));
+
+                //define options for visualization
+                var options = {width: 900, height: 500, is3D: true, title: 'Thống kê theo tuần'};
+
+                //draw our chart
+                chart.draw(dataTable, options);
+
+            }
+</script>

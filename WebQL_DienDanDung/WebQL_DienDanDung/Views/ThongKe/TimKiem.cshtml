@@ -1,0 +1,82 @@
+﻿@using WebQL_DienDanDung.Models;
+@model List<tbl_Bill>
+@{
+    ViewBag.Title = "TimKiem";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<style type="text/css">
+    #father {
+        width: 400px;
+        overflow: auto;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        text-align: center;
+    }
+
+    table, th, td {
+        border: 1px solid #151313;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 10px;
+    }
+
+    #myTable {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+
+        #myTable th, #myTable td {
+            text-align: left;
+            padding: 12px;
+        }
+
+        #myTable tr {
+            border-bottom: 1px solid #ddd;
+        }
+
+            #myTable tr.header, #myTable tr:hover {
+                background-color: #f1f1f1;
+            }
+</style>
+
+<div style="padding:2% 0 2% 0;text-align:center;">
+    <form action="@Url.Action("TimKiem","ThongKe")" method="post">
+        <input type="date" name="ngaybd" required/> &nbsp;<i style="font-size:25px" class="fas fa-minus"></i>&nbsp;
+        <input type="date" name="ngaykt" required/>
+        <a style="text-align:center;font-size: 18px;background-color:black;">
+            <button class="fas fa-search" style="width:60px;" type="submit"></button>
+        </a>
+    </form>
+
+</div>
+<div class="container">
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <tr class="header" style="background-color:black; color:white;">
+                <th style="text-align: center;">Ngày Lập</th>
+                <th style="text-align: center;">Tổng Tiền</th>
+                <th style="text-align: center; width: 1%;"></th>
+            </tr>
+            <tbody id="myTable">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td style="text-align:center" id="ngay">@String.Format("{0:dd/MM/yyyy}", item.DateCreate)</td>
+                        <td style="text-align:center">@String.Format("{0:0,0,0}", item.SumMoney) VNĐ</td>
+                        <td><a href="@Url.Action("ChiTietHD", "HoaDon", new { id_hd = @item.Id })" class="fas fa-info-circle" style="font-size:25px"></a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div style="float:right;font-size:50px;">
+            <a class="fas fa-file-export" href="@Url.Action("XuatFile","ThongKe")"></a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,181 @@
+﻿@using WebQL_DienDanDung.Models;
+@model List<tbl_Bill>
+@{
+    ViewBag.Title = "Hóa Đơn";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<style type="text/css">
+    #father {
+        width: 400px;
+        overflow: auto;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        text-align: center;
+    }
+
+    table, th, td {
+        border: 1px solid #151313;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 10px;
+    }
+
+    #myTable {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+
+        #myTable th, #myTable td {
+            text-align: left;
+            padding: 12px;
+        }
+
+        #myTable tr {
+            border-bottom: 1px solid #ddd;
+        }
+
+            #myTable tr.header, #myTable tr:hover {
+                background-color: #f1f1f1;
+            }
+</style>
+
+<div>
+    <a style="padding: 0 50% 0 2%;">
+        <button type="button" class="far fa-calendar-plus btn btn-dark" onclick="document.getElementById('themhd').style.display='block'"></button>
+    </a>
+
+    <div id="themhd" class="modal">
+        <form class="modal-content animate" action="@Url.Action("ThemHD","HoaDon")" method="post">
+            <div class="imgcontainer">
+                <span onclick="document.getElementById('themhd').style.display = 'none'" class="close" title="Close Modal"><i class="fas fa-backspace"></i></span>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Họ Tên Khách Hàng</label>
+                <div class="col-sm-6">
+                    <select name="TenKH" id="TenKH" class="form-control" style="width:100%;height:34px;font-weight:700;" required>
+                        @Html.Action("LayDSKH", "KhachHang")
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Họ Tên Nhân Viên</label>
+                <div class="col-sm-6">
+                    <select name="TenNV" id="TenNV" class="form-control" style="width:100%;height:34px;font-weight:700;" required>
+                        @Html.Action("LayDSNVBH", "NhanVien")
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Ngày Lập:</label>
+                <div class="col-sm-6">
+                    <input style="text-align:center" disabled type="date" class="form-control" name="NgayTao" value="@String.Format("{0:yyyy-MM-dd}", DateTime.Now)" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Tình Trạng:</label>
+                <div class="col-sm-6" style="text-align:center">
+                    <input type="radio" name="TinhTrang" value="False" checked="checked" /><a style="padding-left:1%;">Chưa Thanh Toán</a>
+                </div>
+            </div>
+        <div style="text-align:right;width:auto;font-size: 2.0em;padding: 0 12% 0 0">
+            <button class="add" type="submit"><i class="fas fa-clipboard-check"></i></button>
+            <a href="@Url.Action("HoaDon", "HoaDon")"><i class="fas fa-share-square"></i></a>
+        </div>
+            <div class="form-group row">
+
+            </div>
+        </form>
+
+    </div>
+    <div class="box" style="text-align:center;font-size: 18px;">
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Nhập từ cần tìm..." title="Type in a name">
+        <a class="fas fa-search" style="color:white;width:60px;"></a>
+    </div>
+
+</div>
+<div class="container">
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <tr class="header" style="background-color:black; color:white;">
+                <th style="text-align: center;"> Họ Tên Khách Hàng</th>
+                <th style="text-align: center;"> Họ Tên Nhân Viên</th>
+                <th style="text-align: center;">Ngày Lập</th>
+                <th style="text-align: center;">Tổng Tiền</th>
+                <th style="text-align: center;">Trạng Thái</th>
+                <th style="text-align: center; width: 1%;"></th>
+                <th style="text-align: center; width: 1%;"></th>
+                <th style="text-align: center; width: 1%;"></th>
+            </tr>
+            <tbody id="myTable">
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td style="text-align:center">@item.tbl_Customer.UserName</td>
+                    <td style="text-align:center">@item.tbl_User.UserName</td>
+                    <td style="text-align:center" id="ngay">@String.Format("{0:dd/MM/yyyy}", item.DateCreate)</td>
+                    <td style="text-align:center">@String.Format("{0:0,0,0}", item.SumMoney) VNĐ</td>
+                    @if (Convert.ToString(item.Status) == "True")
+                    {
+                        <td style="text-align:center"> Đã Thanh Toán</td>
+                    }
+                    else
+                    {
+                        <td style="text-align:center"> Chưa Thanh Toán</td>
+                    }
+                    @if (Convert.ToString(item.Status) == "True")
+                    {
+                        <td><a href="@Url.Action("ThanhToan","HoaDon",new { id_hd = @item.Id})" class="fas fa-money-check-alt" style="font-size:25px;display:none;"></a></td>
+                    }
+                    else
+                    {
+                        <td><a href="@Url.Action("ThanhToan","HoaDon",new { id_hd = @item.Id})" class="fas fa-money-check-alt" style="font-size:25px;"></a></td>
+                        <td><a href="@Url.Action("XoaHD", "HoaDon", new { id_hd = @item.Id })" class="fas fa-trash" style="font-size:25px"></a></td>
+                    }
+                    <td><a href="@Url.Action("ChiTietHD", "HoaDon", new { id_hd = @item.Id })" class="fas fa-info-circle" style="font-size:25px"></a></td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@*Tìm kiếm*@
+<script>
+    $(document).ready(function () {
+        $('#myInput').on('keyup', function (event) {
+            event.preventDefault();
+            /* Act on the event */
+            var tukhoa = $(this).val().toLowerCase();
+            $('#myTable tr').filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(tukhoa) > -1);
+            });
+        });
+    });
+    @*//Kiểm tra sđt
+    $(document).ready(function () {
+        $('body').on('click', '.add', function () {
+            var vnf_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
+            var mobile = $('#mobile').val();
+            if (vnf_regex.test(mobile) == false) {
+                    @ViewData["LoiSDT"] ="Số điện thoại của bạn không đúng định dạng!";
+                }
+        });
+    });*@
+</script>
+@*Đóng form thêm*@
+@*<script>
+        var modal = document.getElementById('themnv');
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>*@
+

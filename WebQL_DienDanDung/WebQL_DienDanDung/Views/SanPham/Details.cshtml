@@ -1,0 +1,54 @@
+﻿@using WebQL_DienDanDung.Models;
+@{
+    ViewBag.Title = "Chi Tiết";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="details_product" style="padding-top:30px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-xs-4 col-sm-4">
+                <div class="box-img">
+                    <img src="~/Content/img/@Model.ProductImage" class="w-100" />
+                </div>
+            </div>
+            <div class="col-md-8 col-xs-8 col-sm-8">
+                <div class="row">
+                    <div><strong style="font-size:28px">@Model.ProductName</strong></div>
+                </div>
+                <div class="row">
+                    <p style="font-weight:bold;color:#575757;font-size:20px">Giá: @String.Format("{0:0,0}", Model.Cost) VNĐ</p>
+                </div>
+                <div class="review">
+                    <i class="fa fa-star" style="color:#FFC120;"></i>
+                    <i class="fa fa-star" style="color:#FFC120;"></i>
+                    <i class="fa fa-star" style="color:#FFC120;"></i>
+                    <i class="fa fa-star" style="color:#FFC120;"></i>
+                    <i class="fa fa-star"></i>
+                </div>
+                <div class="row" style="padding-top:20px; border-bottom:1px solid #575757;font-weight:bold;color:#575757;font-size:20px">
+                    <div class="description">
+                        Thời Hạn Bảo Hành: @Model.ExpiryDate Tháng
+                    </div>
+                </div>
+                <div class="row" style="padding-top: 10%;">
+                    <div class="datmua" style="padding-top:5px">
+                        <a href="@Url.Action("Index", "Home", new {@strURL=Request.Url.ToString()})" onclick="return alert('Đặt hàng thành công!.')">
+                            <button type="button" class="btn btn-info" style="width:150px">
+                                <i class="fab fa-opencart"> ĐẶT MUA</i>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+                <div class="row" style="border-bottom:1px solid black;padding-top:20px;">
+                    <div class="favourite_product">
+                        <a href="#"><i class="fa fa-heart"></i>Yêu thích</a>
+                        <a href="#" style="padding-left:50px"><i class="fa fa-comment-alt"></i>Thêm nhận xét của bạn</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+

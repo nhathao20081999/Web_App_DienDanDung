@@ -1,0 +1,8 @@
+﻿@model IEnumerable<WebQL_DienDanDung.Models.tbl_Producer>
+
+@foreach(var item in Model)
+{
+    <option value="@item.Id">@item.ProducerName</option>
+}
+
+

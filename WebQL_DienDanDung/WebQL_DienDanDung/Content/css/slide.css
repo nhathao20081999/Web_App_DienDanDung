@@ -1,0 +1,18 @@
+﻿.carousel-cell {
+    width: 100%; /* full width */
+    height: 500px;
+    background: #222;
+    /* center images in cells with flexbox */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel.is-fullscreen .carousel-cell {
+    height: 100%;
+}
+
+.carousel-cell img {
+    display: block;
+    max-height: 100%;
+}
